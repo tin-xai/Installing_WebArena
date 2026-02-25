@@ -69,6 +69,9 @@ Check it is running:
 
     docker ps
 
+
+![2-3](assets/image_loading.png)
+
 ------------------------------------------------------------------------
 
 # 4. Wait for GitLab to Boot
@@ -92,6 +95,8 @@ If you see:
     HTTP/1.1 502 Bad Gateway
 
 Wait a few more minutes.
+
+![4](assets/successful_loading.png)
 
 ------------------------------------------------------------------------
 
@@ -158,18 +163,36 @@ Test HTTP:
 ------------------------------------------------------------------------
 
 # 9. Container Management Commands
+🟢 Option A — Just stop GitLab (most common)
 
-Restart GitLab:
-
-    docker restart gitlab
-
-Stop GitLab:
+If you’re done testing and just want GitLab off:
 
     docker stop gitlab
 
-Remove container:
+That cleanly shuts down the container.
+
+Later, you can restart it with:
+
+    docker start gitlab
+
+This is the normal workflow.
+
+🟡 Option B — Remove the container (but keep the image)
+
+If you want to fully remove the running instance:
 
     docker rm -f gitlab
+
+This deletes the container, but the Docker image still exists.
+
+You can re-run it later using:
+
+    docker run ...
+
+🔴 Option C — Remove everything (container + image)
+
+    docker rm -f gitlab
+    docker rmi gitlab-populated-final-port8023
 
 ------------------------------------------------------------------------
 
